@@ -1,12 +1,13 @@
 #!/bin/bash
 
+base_path="~"
 nginx_version="1.19.0"
 php_version="7.3.18"
 user="maikeos"
 group="maikeos"
 passwd="123456"
 
-cd ~
+cd ${base_path}
 
 rm -rf nginx-${nginx_version}.tar.gz nginx-${nginx_version} php-${php_version}.tar.gz php-${php_version}
 
@@ -20,7 +21,7 @@ sudo apt-get install -y libpcre3-dev libssl-dev zlib1g-dev
 
 nginx_path=/usr/local/nginx-${nginx_version}
 
-cd nginx-${nginx_version}
+cd ${base_path}/nginx-${nginx_version}
 ./configure --prefix=${nginx_path} \
     --sbin-path=${nginx_path}/sbin/nginx \
     --conf-path=${nginx_path}/nginx.conf \
@@ -134,7 +135,7 @@ sudo apt-get install -y libxml2-dev libcurl4-openssl-dev libjpeg-dev libpng-dev 
 
 php_path=/usr/local/php-${php_version}
 
-cd php-${php_version}
+cd ${base_path}/php-${php_version}
 ./configure  prefix=${php_path} \
     --exec-prefix=${php_path} \
     --bindir=${php_path}/bin \
