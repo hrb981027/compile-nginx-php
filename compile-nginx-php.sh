@@ -4,7 +4,7 @@ nginx_version="1.19.0"
 php_version="7.3.18"
 user="maikeos"
 group="maikeos"
-passwd="Maikeos.com@9012"
+passwd="123456"
 
 cd ~
 
