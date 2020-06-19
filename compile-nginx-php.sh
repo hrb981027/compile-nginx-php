@@ -1,10 +1,12 @@
 #!/bin/bash
 
-base_path="~"
+# 适用于ubuntu 18
+
+base_path="/home"
 nginx_version="1.19.0"
-php_version="7.3.18"
-user="maikeos"
-group="maikeos"
+php_version="7.3.19"
+user="user1"
+group="user1"
 passwd="123456"
 
 cd ${base_path}
@@ -17,7 +19,9 @@ wget "https://www.php.net/distributions/php-${php_version}.tar.gz"
 tar zxf nginx-${nginx_version}.tar.gz
 tar zxf php-${php_version}.tar.gz
 
-sudo apt-get install -y libpcre3-dev libssl-dev zlib1g-dev
+sudo apt-get install -y gcc automake autoconf make
+
+sudo apt-get install -y openssl libpcre3-dev libssl-dev zlib1g-dev libcurl4-openssl-dev
 
 nginx_path=/usr/local/nginx-${nginx_version}
 
@@ -131,7 +135,7 @@ sudo bash -c "cat > /var/www/html/index.php" <<EOF
     phpinfo();
 EOF
 
-sudo apt-get install -y libxml2-dev libcurl4-openssl-dev libjpeg-dev libpng-dev libfreetype6-dev libzip-dev
+sudo apt-get install -y libxml2-dev libjpeg-dev libpng-dev libfreetype6-dev libzip-dev
 
 php_path=/usr/local/php-${php_version}
 
