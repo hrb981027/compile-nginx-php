@@ -121,7 +121,7 @@ server {
     }
 
     location ~ \.php$ {
-        fastcgi_pass   unix:/dev/shm/php-fpm-${php_version}.sock;
+        fastcgi_pass   127.0.0.1:9000;
         fastcgi_index  index.php;
         include        fastcgi_params;
         fastcgi_param  PATH_INFO \$fastcgi_path_info;
@@ -200,10 +200,10 @@ EOF
 sudo sed -i -e "s/user = www-data/user = ${user}/g" ${php_path}/etc/php-fpm.d/www.conf
 sudo sed -i -e "s/group = www-data/group = ${group}/g" ${php_path}/etc/php-fpm.d/www.conf
 
-sudo sed -i -e "s/listen = 127.0.0.1:9000/; listen = 127.0.0.1:9000/g" ${php_path}/etc/php-fpm.d/www.conf
-sudo bash -c "cat >> ${php_path}/etc/php-fpm.d/www.conf" <<EOF
-listen = /dev/shm/php-fpm-${php_version}.sock
-listen.mode = 0666
-EOF
+# sudo sed -i -e "s/listen = 127.0.0.1:9000/; listen = 127.0.0.1:9000/g" ${php_path}/etc/php-fpm.d/www.conf
+# sudo bash -c "cat >> ${php_path}/etc/php-fpm.d/www.conf" <<EOF
+# listen = /dev/shm/php-fpm-${php_version}.sock
+# listen.mode = 0666
+# EOF
 
 sudo ${nginx_path}/sbin/nginx && sudo ${php_path}/sbin/php-fpm
