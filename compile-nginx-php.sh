@@ -198,7 +198,7 @@ extension=pdo_mysql.so
 EOF
 
 sudo sed -i -e "s/user = www-data/user = ${user}/g" ${php_path}/etc/php-fpm.d/www.conf
-sudo sed -i -e "s/group = www-data/user = ${group}/g" ${php_path}/etc/php-fpm.d/www.conf
+sudo sed -i -e "s/group = www-data/group = ${group}/g" ${php_path}/etc/php-fpm.d/www.conf
 
 sudo sed -i -e "s/listen = 127.0.0.1:9000/; listen = 127.0.0.1:9000/g" ${php_path}/etc/php-fpm.d/www.conf
 sudo bash -c "cat >> ${php_path}/etc/php-fpm.d/www.conf" <<EOF
